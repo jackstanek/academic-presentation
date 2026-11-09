@@ -1,5 +1,22 @@
 # Small steps: a presentation starter
 
+## Create a new presentation
+
+From an empty directory, initialize the default Nix template:
+
+```sh
+mkdir my-presentation
+cd my-presentation
+nix flake init -t github:jackstanek/academic-presentation
+git init
+git add .
+```
+
+This copies the framework, example slides, and dependency lock files into your
+new project. The files are independent copies, ready to customize.
+
+## Run locally
+
 ```sh
 nix develop
 npm ci

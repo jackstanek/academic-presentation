@@ -15,6 +15,11 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
+      templates.default = {
+        path = ./.;
+        description = "A reveal.js presentation with D3, GSAP, KaTeX, and a Nix development shell";
+      };
+
       devShells = forAllSystems (
         system:
         let
