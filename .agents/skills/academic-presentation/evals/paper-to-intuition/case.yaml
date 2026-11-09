@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: paper-to-intuition
+expected_outcome: |
+  Four runnable slides visually explain deterministic highest-score assignment
+  and worker removal. Only the removed worker's keys move. The small example is
+  schematic, with no fabricated benchmarks or implication of perfect balance.
+  Formula selection is justified by comprehension rather than source coverage;
+  dense matrix/load notation is not copied indiscriminately. Notes/references
+  are left to the user. The deck is built and browser verification is reported.

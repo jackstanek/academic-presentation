@@ -15,6 +15,28 @@ git add .
 This copies the framework, example slides, and dependency lock files into your
 new project. The files are independent copies, ready to customize.
 
+### Author slides with an agent
+
+The template includes a repository-local `academic-presentation` skill in
+`.agents/skills/academic-presentation/`, discoverable by coding agents that use
+that convention. Ask your agent to use it with an outline, a paper draft, or a
+conversational brief:
+
+> Use the academic-presentation skill to draft six visual slides explaining
+> cache coherence to systems graduate students. Show a worked example of two
+> cores reading and writing the same cache line. I'll write notes and references.
+
+After reviewing the deck, request changes by slide number or title:
+
+> On slide 4, insert an animation stage before invalidation. Reveal an arrow from
+> core A to core B, then wait for the next advance before changing the cache state.
+
+The skill favors visual intuition over dense text, uses math only when it helps
+explain the idea, and preserves user-written notes and citations. Delivery is a
+runnable deck with build and browser checks; an agent without browser access
+should report that verification is incomplete. The included starter illustrates
+the runtime, not the visual style expected of an authored talk.
+
 ## Run locally
 
 ```sh

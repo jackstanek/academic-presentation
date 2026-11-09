@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: outline-to-visual-deck
+expected_outcome: |
+  A runnable five-slide visual-first deck explains queue accumulation and
+  backpressure using a consistent illustrative item-level example, not invented
+  empirical data. Animations use native navigation and reverse correctly.
+  No unsolicited notes, bibliography, decorative pills, slogans, or dense prose
+  replace the explanation. The author builds and honestly reports browser checks.

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: insert-middle-animation-stage
+expected_outcome: |
+  Only the evaluation slide and its necessary animation wiring change. It has
+  start, substitution, arrow-visible, and computation states driven by native
+  fragments. The arrow appears at the new middle state while the marker stays
+  at 2 + 1 and the result is not highlighted. Back reverses each stage, deep
+  links restore them, and rapid navigation/overview do not leave stale tweens.
+  Other slides, user notes, and the slide ID remain intact. If numeric fragment
+  URLs shift, the author distinguishes those from unchanged slide URLs.
