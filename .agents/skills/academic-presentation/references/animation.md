@@ -18,10 +18,11 @@ handlers or event counters.
 - `createFragmentTimeline` derives the target from visible fragments, not the
   number or order of emitted events. Keep that behavior for reverse navigation,
   grouped fragments, and deep-link restoration.
-- Fragments can be meaningful captions or visually hidden state markers. Do not
-  add a row of textual step chips solely to drive animation. If markers are
-  hidden, use a scoped visually-hidden treatment that keeps the fragment nodes
-  present; do not add unrelated accessible prose or focusable invisible controls.
+- Prefer nonvisual fragment markers when the diagram already shows the change.
+  Technical checkpoints do not require visible captions, numbered steps, or a
+  navigation hint. Add visible text only if it independently aids comprehension
+  or a deliberate spoken reveal. Keep accessible SVG descriptions meaningful;
+  do not turn every internal state name into a label.
 - Each stop must be understandable without seeing motion: reduced-motion users
   and deep links land directly at checkpoints.
 
@@ -32,13 +33,30 @@ to reveal a route before the transfer. Add `route-visible` without renaming the
 other labels:
 
 ```html
-<!-- Inside this animation's container; captions can instead be hidden markers. -->
-<span class="fragment" data-fragment-index="0"
-      data-animation-step="route-visible">Transfer route</span>
-<span class="fragment" data-fragment-index="1"
-      data-animation-step="transferred">Item received</span>
-<span class="fragment" data-fragment-index="2"
-      data-animation-step="complete">Complete</span>
+<!-- Inside this animation's container; these markers drive state, not copy. -->
+<span class="animation-markers" aria-hidden="true">
+  <span class="fragment" data-fragment-index="0"
+        data-animation-step="route-visible"></span>
+  <span class="fragment" data-fragment-index="1"
+        data-animation-step="transferred"></span>
+  <span class="fragment" data-fragment-index="2"
+        data-animation-step="complete"></span>
+</span>
+```
+
+Give this wrapper a scoped nonvisual treatment that removes it from layout while
+leaving the fragment nodes in the DOM for reveal.js and the adapter. For example:
+
+```css
+.reveal .animation-markers {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
 ```
 
 ```ts
@@ -60,9 +78,12 @@ const fragments = createFragmentTimeline(container, timeline);
 ```
 
 Adapt this to existing code; it is not a new playback engine. Define SVG arrow
-markers with IDs unique to the diagram. Attach arrows to the intended objects,
-with readable arrowheads and no overlaps with labels. Keep bounds inside the
-SVG `viewBox` and test at actual presentation size.
+markers with IDs unique to the diagram. Aim arrows unambiguously at the intended
+objects while leaving a little negative space at box edges; keep arrowheads and
+labels clear of each other. Use actual touching endpoints when the represented
+connection requires it. Keep bounds inside the SVG `viewBox` and test at actual
+presentation size. An arrow's appearance should usually explain itself without
+a new “arrow revealed” caption.
 
 ## Make seeking reversible
 

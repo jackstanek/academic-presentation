@@ -34,10 +34,19 @@ the harness. Inspect the rendered page, not just source HTML. For a full draft,
 check all slides and meaningful reveal states; for a local revision, check the
 changed slide, neighboring slides, and any shared-code dependents.
 
-1. **Appearance:** inspect screenshots at the deck's 1280×720 target and a smaller
-   viewport. Check clipping, overlaps, font size, label contrast, SVG bounds,
-   arrow endpoints, and legibility. A DOM bounds check supplements but does not
-   replace visual inspection.
+1. **Appearance and subtraction:** inspect screenshots at the deck's 1280×720
+   target and a smaller viewport. Check clipping, overlaps, font size, contrast,
+   SVG bounds, and legibility. Inspect the negative space around groups, labels,
+   and arrow endpoints. Remove text that only repeats what the visual or another
+   text element already says—including SVG captions and boilerplate footers.
+   Keep a text element only for a concrete comprehension benefit or deliberate
+   spoken reveal. Check for tricolons in all visible text, not only headings.
+   Also inspect the visual objects after subtracting text: palette relationships,
+   figure/ground contrast, meaningful grouping, proportions, and linework should
+   still be deliberate. Do not mistake an inherited dark theme or a few generic
+   rectangles for a finished visual design, and don't restore prose to fix it.
+   Do not replace this judgment with a word quota. A DOM bounds check supplements
+   but does not replace visual inspection.
 2. **Runtime:** inspect console/runtime errors and failed network requests. Check
    KaTeX if used, including signs, subscripts, delimiters, and line overflow.
 3. **Forward/backward:** use native Next until each stage finishes, then leave the

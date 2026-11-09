@@ -10,6 +10,12 @@ Build a visual aid for a live explanation, not a document projected onto a wall.
 The audience should be able to see the mechanism, contrast, or evidence while
 listening to the speaker. Keep the source easy to revise conversationally.
 
+Start with the visual alone. Add visible text only when it helps the audience
+understand what they are seeing or supports a deliberate rhetorical build by the
+speaker. A polished title/subtitle/diagram/caption/footer layout can still be far
+too textual. Most explanation should happen through the speaker and the visual,
+not through parallel prose on screen.
+
 ## Start from the working deck
 
 1. Read repository guidance (`AGENTS.md`), inspect the working tree, and read the
@@ -25,6 +31,8 @@ listening to the speaker. Keep the source easy to revise conversationally.
    slide.
 4. Read [references/animation.md](references/animation.md) before changing
    animation structure, fragments, or lifecycle wiring. Read
+   [references/visual-design.md](references/visual-design.md) before drafting a
+   deck or redesigning its diagrams. Read
    [references/verification.md](references/verification.md) before verification.
 
 ### Repository map
@@ -46,17 +54,49 @@ scripts merely to author slides.
 
 ## Design for visual understanding
 
+- Make a deliberate visual system rather than retaining reveal.js's black theme
+  by inertia. For new decks, prefer a warm light canvas, dark ink, and restrained
+  blue/teal and ochre/rust accents with soft related fills. The user's preferred
+  examples combine these qualities with the sparse layout described below.
+  Follow an explicit user palette or established deck instead when revising it.
+- Sparse text is not a substitute for visual design. Give diagram objects a
+  coherent treatment of shape, scale, fill, stroke, and spacing; use these to
+  distinguish roles and guide attention. See the visual-design reference for a
+  starting palette and how to use it without adding slide furniture.
 - Give each slide a clear explanatory purpose. Prefer one dominant visual:
   a worked example, spatial relationship, comparison, data plot, or mechanism.
   Multiple panels are useful when their relationship is the point.
 - Make the visual do the explanatory work. Replacing bullets with boxes of prose
-  is still a text-heavy slide. Use short direct titles and labels attached to the
-  things they describe; keep necessary qualifications readable.
+  is still a text-heavy slide. Titles are optional; subtitles, captions, takeaways,
+  footers, and visible stage instructions are not default slide furniture. Do not
+  narrate a visible change both above and below the diagram.
+- Keep mostly the indispensable diagram labels: identities, essential quantities,
+  axes/units, or a relationship the drawing cannot disambiguate. Even these are
+  candidates for removal when position, geometry, or an already-established
+  encoding makes them redundant. Do not label every object and intermediate
+  state just because the model has a name for it.
+- A short question or a timed phrase can be useful for the speaker's rhetorical
+  build. Give it a specific job and reveal it at the right moment; do not use
+  that exception to decorate every slide with a slogan or conclusion sentence.
 - Establish a concrete case before adding abstraction. Maintain consistent
   positions, colors, and identities across stages so the audience can follow
-  what changed. Explain legends and encodings instead of relying on color alone.
-- Use empty space, alignment, contrast, and projection-scale type. Do not shrink
-  text to fit a paper excerpt or make every slide a dashboard of cards.
+  what changed. Make encodings legible without relying on color alone; a shared
+  legend need not be repeated once the audience knows it.
+- Use negative space deliberately: separate meaningful groups, leave breathing
+  room around labels, and make the relationship between objects readable. Prefer
+  a small clear gap between an arrow and each box when the connection remains
+  unambiguous; avoid arrowheads jammed into borders or labels. Touching endpoints
+  are appropriate when the represented topology requires them. Empty space is
+  useful structure, not a hole to fill with prose, borders, or extra panels.
+- Use alignment, contrast, and projection-scale type. Do not shrink text to fit a
+  paper excerpt or make every slide a dashboard of cards. Minimal text does not
+  require a bland diagram: make shape, proportion, emphasis, and motion carry
+  the explanation.
+- Distinguish semantic containers from decorative cards. A worker enclosing its
+  keys or a queue enclosing its slots is useful visual structure; soft fills,
+  modest corner radii, and fine outlines are appropriate for such objects. The
+  prohibition is on generic UI panels and badges used as slide decoration, not
+  on drawing meaningful boundaries around related things.
 - Avoid chips/badges/pills, decorative eyebrow labels, quippy taglines, slogan
   titles, rhetorical tricolons, and forced “three things” layouts. An actual
   three-stage process is fine; ornamental three-part rhetoric is not. Rounded
@@ -69,6 +109,22 @@ scripts merely to author slides.
   changing state. Each reveal should answer a question or isolate a change.
   Avoid continuous ambient motion, gratuitous entrance effects, and automatic
   playback that forces the speaker to keep pace.
+
+### Subtract text before delivery
+
+Inspect the rendered slide at each checkpoint, including text drawn inside SVG.
+For every visible text element ask: **What becomes harder to understand, or what
+specific spoken reveal stops working, if this disappears?** If there is no clear
+answer, remove it. If a shorter label does the job, shorten it. Test deletion,
+not merely rewriting the same prose more tersely.
+
+Look especially for repeated claims across titles, subtitles, stage captions,
+diagram labels, counters, and footers. A diagram should not need a running
+commentary printed beside it. Check for rhetorical tricolons in subtitles and
+footnotes as well as titles; technical-looking wording is not an exemption.
+Keep necessary scientific qualifications and user citations, but state a shared
+example assumption once where it matters rather than on every slide. Do not hide
+clutter with tiny type or move it wholesale into unsolicited speaker notes.
 
 ### Math has to earn its place
 
@@ -105,7 +161,8 @@ citations to make a slide cleaner is not an acceptable simplification.
 ## Draft a presentation
 
 1. Form a lightweight slide plan from the supplied material. For each slide,
-   identify its purpose, proposed visual, and any meaningful reveal states. This
+   identify its purpose, proposed visual, and any meaningful reveal states. Start
+   without prose and justify any text that needs to accompany the visual. This
    is an authoring aid, not a mandatory report or extra deliverable. Share a
    compact plan if the narrative needs agreement; do not block a clear request
    with a long design interview.
@@ -113,15 +170,18 @@ citations to make a slide cleaner is not an acceptable simplification.
    sections. Respect a requested outline and duration; suggest a departure when
    it materially improves comprehension. Do not add generic agenda, conclusion,
    or “questions?” slides solely to complete a template.
-3. Implement the deck in this project. Give sections semantic, unique, stable IDs
+3. Choose the diagram palette and object treatments, then implement the deck in
+   this project. Keep the sparse composition; don't buy visual richness with
+   extra headings, captions, cards, or footers. Give sections semantic, unique, stable IDs
    such as `queue-overflow`. Keep visual data and animation steps named and easy
    to locate. Scope CSS and SVG IDs to avoid cross-slide collisions.
 4. Initialize every new animation explicitly in `src/main.ts`. Adapt the existing
    registration/lifecycle to all animation instances; ensure removed starter
    diagrams no longer have dangling imports, queries, or initializers.
-5. Verify the runnable result, fix issues, then hand off with a short description
-   and preview URL. Invite slide-specific feedback without generating notes or
-   ancillary documents the user did not request.
+5. Run the text-subtraction pass on actual rendered checkpoints, then verify the
+   runnable result and fix issues. Hand off with a short description and preview
+   URL. Invite slide-specific feedback without generating notes or ancillary
+   documents the user did not request.
 
 ## Revise a particular slide
 
@@ -135,7 +195,11 @@ citations to make a slide cleaner is not an acceptable simplification.
    “this element” and the identity is unclear.
 3. Make the smallest coherent change. Preserve unrelated slide order, user notes,
    citations, IDs, styling, and animation states. Prefer local layout adjustments
-   over global CSS changes.
+   over global CSS changes. Do not add explanatory copy to describe the edit.
+   On the edited slide, remove redundant starter scaffolding such as navigation
+   hints or duplicate stage labels instead of inheriting it as a design rule.
+   Preserve substantive user text; ask before deleting material whose role is
+   unclear. This is not permission for a deck-wide cleanup or palette change.
 4. For an inserted animation stage, write the intended state sequence first.
    Add the geometry/arrow and its initial state, add a timeline segment with an
    end label, and add a matching HTML fragment at the correct index. Update later
