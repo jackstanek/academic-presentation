@@ -1,0 +1,49 @@
+:root {
+  color-scheme: dark;
+  --r-background-color: #10151e;
+  --r-main-font: system-ui, sans-serif;
+  --r-heading-font: system-ui, sans-serif;
+  --r-main-font-size: 32px;
+  --r-main-color: #dae2ee;
+  --r-heading-color: #f5f7fb;
+  --r-heading-text-transform: none;
+  --r-link-color: #80e5c2;
+  --r-selection-background-color: #305d59;
+  --accent: #80e5c2;
+  --muted: #9eabc0;
+}
+
+.reveal .slides { text-align: left; }
+.reveal .slides > section { padding: 0; }
+.reveal h1 { font-size: 2.8em; line-height: 1.08; letter-spacing: -0.055em; }
+.reveal h1 span { color: var(--accent); }
+.reveal h2 { font-size: 1.65em; letter-spacing: -0.035em; margin-bottom: 0.7em; }
+.reveal p { line-height: 1.5; }
+.reveal .eyebrow { color: var(--accent); font-size: 0.48em; font-weight: 650; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.6em; }
+.reveal .subtitle { max-width: 26em; color: var(--muted); }
+.reveal .hint { color: var(--muted); font-size: 0.48em; margin-top: 1.8em; }
+.reveal .toolkit { display: flex; gap: 0.6em; margin: 1.3em 0; }
+.reveal .toolkit span { border: 1px solid #354356; border-radius: 999px; padding: 0.5em 1em; font-size: 0.48em; }
+.reveal .equation { background: #182230; border-left: 3px solid var(--accent); padding: 0.75em; margin: 1em 0; font-size: 1.1em; }
+.reveal .katex { font-size: 1.08em; }
+.reveal .katex-display { margin: 0.5em 0; }
+.reveal .animation { width: 880px; max-width: 100%; margin: 0 auto; overflow: hidden; border: 1px solid #354356; border-radius: 16px; background: #111923; }
+.reveal .animation svg { display: block; width: 100%; height: auto; margin: 0; }
+.reveal .animation svg text { text-anchor: middle; fill: #f5f7fb; font-family: system-ui, sans-serif; }
+.reveal .animation .diagram-heading { font-size: 23px; letter-spacing: 3px; fill: var(--muted); }
+.reveal .animation .diagram-expression { font-family: monospace; font-size: 36px; }
+.reveal .animation .diagram-caption { font-size: 30px; fill: var(--muted); }
+.reveal .animation-steps { display: flex; justify-content: space-between; gap: 1em; padding: 0.9em 1em; border-top: 1px solid #354356; font-size: 0.5em; color: var(--accent); }
+.reveal #animation-slide h2 { margin-bottom: 0.4em; }
+.reveal #animation-slide .eyebrow { margin-bottom: 1em; }
+.reveal #animation-slide .hint { margin-top: 0.7em; text-align: center; }
+.reveal .file-list { display: grid; gap: 0.85em; margin-top: 1.3em; }
+.reveal .file-list div { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1em; border-bottom: 1px solid #293445; padding-bottom: 0.85em; font-size: 0.6em; }
+.reveal .file-list code { color: var(--accent); font-size: 0.9em; }
+.reveal .file-list span { color: var(--muted); }
+.reveal kbd { border: 1px solid #354356; border-radius: 4px; padding: 0.1em 0.4em; }
+.reveal .slide-number { color: var(--muted); background: transparent; font-family: var(--r-main-font); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section { transition: none !important; }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A reveal.js, KaTeX, D3, and GSAP starter presentation." />
+    <title>Small steps — PL seminar</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="title-slide">
+          <p class="eyebrow">Research Seminar</p>
+          <h1>Small steps.<br /><span>Clear ideas.</span></h1>
+          <p class="subtitle">A presentation starter for code, mathematics, and motion.</p>
+          <div class="toolkit" aria-label="Presentation toolkit">
+            <span>reveal.js</span><span>KaTeX</span><span>D3</span><span>GSAP</span>
+          </div>
+          <p class="hint">Use the arrow keys to explore →</p>
+          <aside class="notes">This is a working example, not the seminar content. Replace these slides with your own talk.</aside>
+        </section>
+
+        <section>
+          <p class="eyebrow">01 / Write the idea</p>
+          <h2>One rule. One small step.</h2>
+          <p>Function application becomes substitution:</p>
+          <div class="equation">
+            \[ (\lambda x.\, e)\,v \;\longrightarrow_{\beta}\; e[x \coloneqq v] \]
+          </div>
+          <p class="fragment">For example, \((\lambda x.\, x + 1)\,2 \longrightarrow 2 + 1 \longrightarrow 3\).</p>
+          <p class="hint">Math and fonts are bundled locally. No CDN required.</p>
+          <aside class="notes">Press the right arrow once to reveal the example. KaTeX handles both display and inline math.</aside>
+        </section>
+
+        <section id="animation-slide">
+          <p class="eyebrow">02 / Show the idea</p>
+          <h2>Make the step visible.</h2>
+          <figure class="animation" id="reduction-animation">
+            <svg id="reduction-diagram" role="img" aria-labelledby="reduction-title reduction-description"></svg>
+            <figcaption class="animation-steps">
+              <span class="fragment" data-fragment-index="0" data-animation-step="substitute">1. Substitute 2 for x</span>
+              <span class="fragment" data-fragment-index="1" data-animation-step="result">2. Compute the result</span>
+            </figcaption>
+          </figure>
+          <p class="hint">Advance to animate each step. Go back to reverse it.</p>
+          <aside class="notes">Use the same Next/Back controls as the rest of the talk. The first advance substitutes 2 for x; the second computes 3; the third moves to the next slide. Back reverses these steps. Fragment labels in the HTML correspond to GSAP timeline labels in src/animations/reduction.ts.</aside>
+        </section>
+
+        <section>
+          <p class="eyebrow">03 / Make it yours</p>
+          <h2>A small, editable toolkit.</h2>
+          <div class="file-list">
+            <div><code>index.html</code><span>Slides, fragments, and speaker notes</span></div>
+            <div><code>src/main.ts</code><span>Presentation setup and local math</span></div>
+            <div><code>src/styles.css</code><span>Colors, typography, and layout</span></div>
+            <div><code>src/animations/reduction.ts</code><span>D3 diagram and GSAP timeline</span></div>
+          </div>
+          <p class="hint">Press <kbd>Esc</kbd> for an overview or <kbd>S</kbd> for speaker notes.</p>
+          <aside class="notes">Run npm run build to produce a self-contained static site in dist. Edit diagrams and timelines directly in TypeScript; no separate animation editor is needed.</aside>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
